@@ -60,7 +60,6 @@ public class Passenger
 			return false;
 		else
 			return true;
-
 	}
 
 	////////////////////// TESTER METHODS BELOW//////////////////////////////
@@ -93,6 +92,12 @@ public class Passenger
 	 */
 	public boolean testGetArrivalID()
 	{
+		
 		return true;
+	}
+	///////// main method to test use all the test methods////////////
+	public static void main (String [] args)
+	{
+		
 	}
 }
