@@ -4,6 +4,7 @@ import com.pearson.carrano.ArrayQueue;
 
 public class Station
 {
+	private TrainRoute trainRoute = new TrainRoute();
 	private int stationID; 
 	private int location; 
 	
@@ -23,6 +24,26 @@ public class Station
 		outboundPlatform = new ArrayQueue<Passenger>(50);
 	}
 	
+	/**
+	 * Determines which direction the Passenger should travel 
+	 * @param Passenger
+	 * @return either INBOUND or OUTBOUND
+	 */
+	private Direction determinePlatform(Passenger pass)
+	{
+		int destStationLocation = -1;
+		for(Station s:trainRoute.getStations())
+			if(s.stationID == pass.getDestinationID())
+			{
+				destStationLocation = pass.getDestinationID();
+			}
+		if(destStationLocation < this.location)
+		{
+			return Direction.INBOUND;
+		}
+		else return Direction.OUTBOUND;
+
+	}
 	/**
 	 * add passenger to the correct platform. 
 	 * @param Pass
