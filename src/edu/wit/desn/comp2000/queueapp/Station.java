@@ -4,7 +4,7 @@ import com.pearson.carrano.ArrayQueue;
 
 public class Station
 {
-	private TrainRoute trainRoute = new TrainRoute();
+	
 	private int stationID; 
 	private int location; 
 	
@@ -31,7 +31,7 @@ public class Station
 	 */
 	public void addPassengerToQueue(int Pass)
 	{
-		
+		//STUB
 	}
 	
 	/**
@@ -40,7 +40,43 @@ public class Station
 	 */
 	public void removePassengersFromTrain(int Pass)
 	{
-		
+		//STUB
+	}
+
+
+	/**
+	 * @return the stationID
+	 */
+	public int getStationID() 
+	{
+		return stationID;
+	}
+
+
+	/**
+	 * @return the location
+	 */
+	public int getLocation() 
+	{
+		return location;
+	}
+
+
+	/**
+	 * @return the inboundPlatform
+	 */
+	public ArrayQueue<Passenger> getInboundPlatform() 
+	{
+		return inboundPlatform;
+	}
+
+
+	/**
+	 * @return the outboundPlatform
+	 */
+	public ArrayQueue<Passenger> getOutboundPlatform()
+	{
+		return outboundPlatform;
 	}
 	
 	
