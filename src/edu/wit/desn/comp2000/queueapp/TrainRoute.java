@@ -28,5 +28,18 @@ public class TrainRoute
 		return location;
 		
 	}
-	
+	//////////////Test methods Below/////////////
+	/**
+	 * test location of the train to make sure it is actually on the 
+	 * route and if it is removing and adding passengers at actual 
+	 * indexes that are stations. 
+	 * true if the given location is valid. 
+	 * @param location
+	 * @return
+	 */
+	public boolean testLocation (int location)
+	{
+		//if (location )
+		return true;
+	}
 }
