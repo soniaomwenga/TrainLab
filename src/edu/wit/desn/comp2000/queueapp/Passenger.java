@@ -97,7 +97,7 @@ public class Passenger
 	}
 	public String toString ()
 	{
-		return "ID: " + ID + " Arrival Station: " + arrivalID + " Destination Station: " + destinationID;
+		return "PassengerID: " + ID;
 	}
 	///////// main method to test use all the test methods////////////
 	public static void main (String [] args)

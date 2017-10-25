@@ -31,7 +31,6 @@ public class TrainRoute
 			{
 				stations.add(new Station (i, stationLocations[i]));	
 			}
-			
 			//Configuration config1 = new Configuration(); 
 			TrainSpec[] trainSpecs = config.getTrains();
 			for (int i = 0; i < trainTracks.size(); i++)
@@ -44,7 +43,6 @@ public class TrainRoute
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 	
 	/**
@@ -52,23 +50,8 @@ public class TrainRoute
 	 * @param Passenger
 	 * @return either INBOUND or OUTBOUND
 	 */
-	private static Direction whichDirection(Passenger pass)
+	public static Direction whichDirection(int destStationLocation, int arrStationLocation)
 	{
-		int destStationLocation = -1;
-		int arrStationLocation = -1;
-		for(Station s:stations)
-		{
-			//find the location of the passenger's destination station 
-			//
-			if(s.getStationID() == pass.getDestinationID())
-			{
-				destStationLocation = s.getLocation();
-			}
-			if(s.getStationID() == pass.getArrivalID())
-			{
-				arrStationLocation = s.getLocation();
-			}
-		}
 		if(destStationLocation < arrStationLocation)
 		{
 			return Direction.INBOUND;
@@ -78,6 +61,7 @@ public class TrainRoute
 			return Direction.OUTBOUND;
 		}
 	}
+	
 	/**
 	 * checking if there is a train at the given location. if there is, 
 	 * return the train and all its contents. 
@@ -103,13 +87,15 @@ public class TrainRoute
 			}
 		}
 		*/
+		
 			for (int i = 0; i < trainTracks.size(); i++)
 			{
-				if (trainTracks[i] == )
+				if (trainTracks.get(i).getLocation() ==location)
 				{
-					
+					return trainTracks.get(i);
 				}
 			}
+			return null;
 	}
 	/**
 	 * this method will reverse the direction of 
