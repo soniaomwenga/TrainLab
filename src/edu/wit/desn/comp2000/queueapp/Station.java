@@ -2,6 +2,10 @@ package edu.wit.desn.comp2000.queueapp;
 //Wes
 import com.pearson.carrano.ArrayQueue;
 
+/**
+ * @author Wes Brimeyer
+ * @version	1.0.0	first pass
+ */
 public class Station
 {
 	
@@ -27,23 +31,69 @@ public class Station
 	
 	/**
 	 * add passenger to the correct platform. 
-	 * @param Pass
+	 * @param a Passenger, which platform to add it to (inbound or outbound)
 	 */
-	public void addPassengerToQueue(int Pass)
+	public void addPassengerToPlatform(Passenger pass, Direction platformNeeded)
 	{
-		//STUB
+		if(platformNeeded == Direction.INBOUND)
+		{
+			inboundPlatform.enqueue(pass);
+		}
+		else
+		{
+			outboundPlatform.enqueue(pass);
+		}
 	}
 	
 	/**
-	 * removing passengers from the train if their destination is the current location
-	 * @param Pass
+	 * Passenger enters the station from outside
+	 * 
+	 * @param pass
 	 */
-	public void removePassengersFromTrain(int Pass)
+	public void enter(Passenger pass)
 	{
-		//STUB
+		
 	}
-
-
+	
+	/**
+	 * Passenger exits the station and goes outside into the real world
+	 * 
+	 * @param pass
+	 */
+	public void exit(Passenger pass)
+	{
+		
+	}
+	
+	/**
+	 * Passenger arrives at station after getting off a train
+	 * 
+	 * @param pass
+	 */
+	public void arrive(Passenger pass)
+	{
+		
+	}
+	
+	/**
+	 * Passenger departs the station and enters a train,
+	 * removes passenger from the platform queue
+	 * @param a Passenger, the Direction of the platform 
+	 */
+	public void depart(Passenger pass, Direction platformDeparted)
+	{
+		if(platformDeparted == Direction.INBOUND)
+		{
+			inboundPlatform.dequeue();
+		}
+		else
+		{
+			outboundPlatform.enqueue(pass);
+		}
+		
+	}
+	
+//Accessor Methods below---
 	/**
 	 * @return the stationID
 	 */
@@ -63,21 +113,14 @@ public class Station
 
 
 	/**
-	 * @return the inboundPlatform
+	 * @return either inboundPlatform or outboundPlatform Queue
 	 */
-	public ArrayQueue<Passenger> getInboundPlatform() 
+	public ArrayQueue<Passenger> getPlatform(Direction direction) 
 	{
-		return inboundPlatform;
+		if(direction == Direction.INBOUND)
+			return inboundPlatform;
+		else return outboundPlatform;
 	}
 
 
-	/**
-	 * @return the outboundPlatform
-	 */
-	public ArrayQueue<Passenger> getOutboundPlatform()
-	{
-		return outboundPlatform;
-	}
-	
-	
 }
