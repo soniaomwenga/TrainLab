@@ -10,15 +10,12 @@ import edu.wit.desn.comp2000.queueapp.Configuration.TrainSpec;
 public class TrainRoute
 {
 	private ArrayList<Train> trainTracks = new ArrayList<Train>(20);
-	
-	private ArrayList<Station> stations;
+
+	private static ArrayList<Station> stations;
 
 	/*
-	 * private int locationInbound; 
-	 * private int locationOutbound; 
-	 * private int
-	 * destinationID; 
-	 * private int arrivalID;
+	 * private int locationInbound; private int locationOutbound; private int
+	 * destinationID; private int arrivalID;
 	 */
 	public TrainRoute()
 	{
@@ -29,9 +26,9 @@ public class TrainRoute
 			int[] stationLocations = config.getStations();
 			for (int i = 0; i < stationLocations.length; i++)
 			{
-				stations.add(new Station (i, stationLocations[i]));	
+				stations.add(new Station(i, stationLocations[i]));
 			}
-			//Configuration config1 = new Configuration(); 
+			// Configuration config1 = new Configuration();
 			TrainSpec[] trainSpecs = config.getTrains();
 			for (int i = 0; i < trainTracks.size(); i++)
 			{
@@ -44,15 +41,30 @@ public class TrainRoute
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Determines which direction the Passenger should travel 
 	 * @param Passenger
 	 * @return either INBOUND or OUTBOUND
 	 */
-	public static Direction whichDirection(int destStationLocation, int arrStationLocation)
+	public static Direction whichDirection(int destStationID, int arrStationID)
 	{
-		if(destStationLocation < arrStationLocation)
+		int destStationLocation = -1;
+		 int arrStationLocation = -1;
+		 	for(Station s:stations)
+		 		{
+		 			//find the location of the passenger's destination station 
+		 			//
+		 			if(s.getStationID() == destStationID)
+		 			{
+		 				destStationLocation = s.getLocation();
+					}
+		 			if(s.getStationID() == arrStationID)
+		 			{
+		 				arrStationLocation = s.getLocation();
+		 			}
+		 		}
+		if (destStationLocation < arrStationLocation)
 		{
 			return Direction.INBOUND;
 		}
@@ -61,7 +73,7 @@ public class TrainRoute
 			return Direction.OUTBOUND;
 		}
 	}
-	
+
 	/**
 	 * checking if there is a train at the given location. if there is, 
 	 * return the train and all its contents. 
@@ -70,33 +82,16 @@ public class TrainRoute
 	 */
 	private Train getTrainAt(int location)
 	{
-		//comparing if the location for train 
-		// equals the current location 
-		//?????hopefully???????
-		/*
-		Configuration config = new Configuration();
-		TrainSpec[] trainSpecs = config.getTrains();
-		char x = (char) trainSpecs[location].location;
-		int b = (int) x;
-	
-		for (int i = 0; i < trainSpecs.length; i++)
+		for (int i = 0; i < trainTracks.size(); i++)
 		{
-			if(trainSpecs[i].location == location)
+			if (trainTracks.get(i).getLocation() == location)
 			{
-				return trainTracks[i]; 
+				return trainTracks.get(i);
 			}
 		}
-		*/
-		
-			for (int i = 0; i < trainTracks.size(); i++)
-			{
-				if (trainTracks.get(i).getLocation() ==location)
-				{
-					return trainTracks.get(i);
-				}
-			}
-			return null;
+		return null;
 	}
+
 	/**
 	 * this method will reverse the direction of 
 	 * any train which has reached the end of the route. 
@@ -126,17 +121,18 @@ public class TrainRoute
 		else
 			return false;
 	}
+
 	/**
 	 * test to make sure there are at least 2 stations along 
 	 * the train route at the beginning of the simulation
 	 * @param stations
 	 * @return
 	 */
-	public String testTrainRoute (ArrayList<Object> stations)
+	public String testTrainRoute(ArrayList<Object> stations)
 	{
 		if (stations.size() > 1)
 			return "theres are enough stations present to begin the simulation";
-		else 
+		else
 			return "theres an insufficient number of stations.";
 	}
 
