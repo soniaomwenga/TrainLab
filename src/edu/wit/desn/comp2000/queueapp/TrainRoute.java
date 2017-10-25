@@ -11,7 +11,6 @@ public class TrainRoute
 {
 	private ArrayList<Train> trainTracks = new ArrayList<Train>(20);
 	
-	
 	private ArrayList<Station> stations;
 
 	/*
@@ -33,12 +32,11 @@ public class TrainRoute
 				stations.add(new Station (i, stationLocations[i]));	
 			}
 			
-			
 			//Configuration config1 = new Configuration(); 
-			TrainSpec[] trainSpefications = config.getTrains();
+			TrainSpec[] trainSpecs = config.getTrains();
 			for (int i = 0; i < trainTracks.size(); i++)
 			{
-				trainTracks.add(new Train(Train.getTrainID(), Train.getLocation(), Train.getDirection());
+				trainTracks.add(new Train(i, trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
 			}
 		}
 		catch (FileNotFoundException e)
