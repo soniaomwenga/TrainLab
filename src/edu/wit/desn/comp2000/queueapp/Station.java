@@ -119,7 +119,10 @@ public class Station
 	{
 		if(direction == Direction.INBOUND)
 			return inboundPlatform;
-		else return outboundPlatform;
+		else 
+		{
+			return outboundPlatform;
+		}
 	}
 
 

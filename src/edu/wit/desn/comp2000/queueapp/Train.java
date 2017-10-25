@@ -87,10 +87,10 @@ public class Train
 //just to test
 	public static void main(String[] args)
 	{
-		Train test = new Train(1,10, Direction.INBOUND);
-		System.out.println(test.getTrainID());
-		System.out.println(test.getLocation());
-		System.out.println(test.getDirection());
+		//Train test = new Train(1,10, Direction.INBOUND);
+		//System.out.println(test.getTrainID());
+		//System.out.println(test.getLocation());
+		//System.out.println(test.getDirection());
 		
 	}
 }
