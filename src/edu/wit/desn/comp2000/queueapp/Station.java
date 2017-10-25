@@ -20,10 +20,10 @@ public class Station
 	 * @param ID
 	 * @param location1
 	 */
-	public Station(int ID, int location1)
+	public Station(int ID, int location)
 	{
 		stationID = ID;
-		location = location1;
+		this.location = location;
 		inboundPlatform = new ArrayQueue<Passenger>(50);
 		outboundPlatform = new ArrayQueue<Passenger>(50);
 	}
@@ -31,10 +31,12 @@ public class Station
 	
 	/**
 	 * add passenger to the correct platform. 
-	 * @param a Passenger, which platform to add it to (inbound or outbound)
+	 * @param a Passenger
 	 */
-	public void addPassengerToPlatform(Passenger pass, Direction platformNeeded)
+	public void addToPlatform(Passenger pass)
 	{
+		Direction platformNeeded = TrainRoute.whichDirection();//which platform to add it to (inbound or outbound)
+		
 		if(platformNeeded == Direction.INBOUND)
 		{
 			inboundPlatform.enqueue(pass);
@@ -52,7 +54,8 @@ public class Station
 	 */
 	public void enter(Passenger pass)
 	{
-		
+		//Logger.write(pass + " has entered " + station);
+		addToPlatform(pass);
 	}
 	
 	/**
@@ -62,9 +65,11 @@ public class Station
 	 */
 	public void exit(Passenger pass)
 	{
-		
+		//Logger.write(pass + " has left "+station+" and gone outside");
 	}
 	
+	//When a Train arrives at a Station, two sets of interactions occur: 
+	//(1) Passengers disembark() the Train and simultaneously/immediately arrive() at the Station 
 	/**
 	 * Passenger arrives at station after getting off a train
 	 * 
@@ -72,9 +77,21 @@ public class Station
 	 */
 	public void arrive(Passenger pass)
 	{
-		
+		if(pass.getDestinationID() == stationID)
+		{
+			//Logger.write(pass + " has arrived at his/her destination, "+ station);
+			exit(pass);
+		}
+		else
+		{
+			//Logger.write(pass + " has arrived at " + station + ", but this is not the desired destination!");
+			addToPlatform(pass);
+		}
+		 
 	}
 	
+	//(2), while there are Passengers waiting on the platform 
+	//and the Train has room for more Passengers, a Passenger leave()s the Station (platform) and board()s the Train
 	/**
 	 * Passenger departs the station and enters a train,
 	 * removes passenger from the platform queue
@@ -91,6 +108,12 @@ public class Station
 			outboundPlatform.enqueue(pass);
 		}
 		
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Station #" + stationID;
 	}
 	
 //Accessor Methods below---

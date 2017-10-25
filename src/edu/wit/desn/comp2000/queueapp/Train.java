@@ -22,11 +22,14 @@ public class Train
 	
 	private Direction direction; 
 	
+	private int maxPassengers;
+	
 	public Train(int ID, int initialLocation, Direction initialDirection, int capacity)
 	{
 		trainID = ID;
 		location = initialLocation;
 		direction = initialDirection;
+		maxPassengers = capacity;
 		train = new ArrayList<Passenger> (capacity);
 	}
 	
@@ -36,8 +39,10 @@ public class Train
 	 */
 	public void board(Passenger pass)
 	{
-		train.add(pass);
-		//STUB
+		if(train.size() < maxPassengers)
+			train.add(pass);
+			//Logger.write(pass + " has boarded "+train
+		//else Logger.write(train + "is now full");
 		
 	}
 	
@@ -53,7 +58,7 @@ public class Train
 	@Override
 	public String toString()
 	{
-		return "Train "+trainID+"  Location: "+location;
+		return "Train #"+trainID;// +"  Location: "+location;
 	}
 	
 //Accessor methods below
