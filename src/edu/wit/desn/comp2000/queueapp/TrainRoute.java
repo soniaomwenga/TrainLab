@@ -52,7 +52,7 @@ public class TrainRoute
 	 * @param Passenger
 	 * @return either INBOUND or OUTBOUND
 	 */
-	private Direction whichDirection(Passenger pass)
+	private static Direction whichDirection(Passenger pass)
 	{
 		int destStationLocation = -1;
 		int arrStationLocation = -1;
@@ -78,19 +78,38 @@ public class TrainRoute
 			return Direction.OUTBOUND;
 		}
 	}
+	/**
+	 * checking if there is a train at the given location. if there is, 
+	 * return the train and all its contents. 
+	 * @param location
+	 * @return
+	 */
 	private Train getTrainAt(int location)
 	{
+		//comparing if the location for train 
+		// equals the current location 
+		//?????hopefully???????
 		/*
-		if (inboundTracks.get(location) == Train.getTrain())
+		Configuration config = new Configuration();
+		TrainSpec[] trainSpecs = config.getTrains();
+		char x = (char) trainSpecs[location].location;
+		int b = (int) x;
+	
+		for (int i = 0; i < trainSpecs.length; i++)
 		{
-			return Train.getTrain();
-		}
-		else 
-		{
-			return null; 
+			if(trainSpecs[i].location == location)
+			{
+				return trainTracks[i]; 
+			}
 		}
 		*/
-		return null;
+			for (int i = 0; i < trainTracks.size(); i++)
+			{
+				if (trainTracks[i] == )
+				{
+					
+				}
+			}
 	}
 	/**
 	 * this method will reverse the direction of 

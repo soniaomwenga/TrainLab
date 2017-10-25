@@ -95,6 +95,10 @@ public class Passenger
 		
 		return true;
 	}
+	public String toString ()
+	{
+		return "ID: " + ID + " Arrival Station: " + arrivalID + " Destination Station: " + destinationID;
+	}
 	///////// main method to test use all the test methods////////////
 	public static void main (String [] args)
 	{
