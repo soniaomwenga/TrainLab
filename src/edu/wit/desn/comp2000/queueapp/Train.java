@@ -13,6 +13,7 @@ public class Train
  *  This 
  * 
  */
+	
 	private ArrayList<Passenger> train;
 	
 	private int trainID; 
