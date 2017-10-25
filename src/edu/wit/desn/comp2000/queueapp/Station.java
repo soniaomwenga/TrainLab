@@ -35,8 +35,8 @@ public class Station
 	 */
 	public void addToPlatform(Passenger pass)
 	{
-		Direction platformNeeded = TrainRoute.whichDirection();//which platform to add it to (inbound or outbound)
-		
+		//which platform to add it to (inbound or outbound)
+		Direction platformNeeded = TrainRoute.whichDirection(pass.getDestinationID(), pass.getArrivalID());
 		if(platformNeeded == Direction.INBOUND)
 		{
 			inboundPlatform.enqueue(pass);
