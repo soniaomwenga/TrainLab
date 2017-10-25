@@ -311,8 +311,7 @@ public class Configuration
 			String[] trainSpecParts = trainParameters[i].split(":");
 
 			// location, direction, capacity
-			trainSpecifications[i] = new TrainSpec(Integer.parseInt(trainSpecParts[0].trim()),
-					Direction.parse(trainSpecParts[1]), Integer.parseInt(trainSpecParts[2].trim()));
+			trainSpecifications[i] = new TrainSpec(Integer.parseInt(trainSpecParts[0].trim()), Direction.parse(trainSpecParts[1]), Integer.parseInt(trainSpecParts[2].trim()));
 		} // end for()
 
 		return trainSpecifications;

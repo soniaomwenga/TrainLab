@@ -46,21 +46,24 @@ public class Train
 	/**
 	 * @return the train
 	 */
-	public ArrayList<Passenger> getTrain() {
+	public ArrayList<Passenger> getTrain() 
+	{
 		return train;
 	}
 
 	/**
 	 * @return the trainID
 	 */
-	public int getTrainID() {
+	public int getTrainID() 
+	{
 		return trainID;
 	}
 
 	/**
 	 * @return the location
 	 */
-	public int getLocation() {
+	public int getLocation() 
+	{
 		return location;
 	}
 

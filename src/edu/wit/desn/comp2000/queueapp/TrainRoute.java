@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import com.pearson.carrano.ArrayQueue;
 
+import edu.wit.desn.comp2000.queueapp.Configuration.TrainSpec;
+
 public class TrainRoute
 {
-	private ArrayList<Train> inboundTracks = new ArrayList<Train>(30);
-	private ArrayList<Train> outboundTracks = new ArrayList<Train>(30);
+	private ArrayList<Train> trainTracks = new ArrayList<Train>(20);
+	
 	
 	private ArrayList<Station> stations;
 
@@ -28,8 +30,15 @@ public class TrainRoute
 			int[] stationLocations = config.getStations();
 			for (int i = 0; i < stationLocations.length; i++)
 			{
-				//stations.add(stationLocations[i]);
 				stations.add(new Station (i, stationLocations[i]));	
+			}
+			
+			
+			//Configuration config1 = new Configuration(); 
+			TrainSpec[] trainSpefications = config.getTrains();
+			for (int i = 0; i < trainTracks.size(); i++)
+			{
+				trainTracks.add(new Train(Train.getTrainID(), Train.getLocation(), Train.getDirection());
 			}
 		}
 		catch (FileNotFoundException e)
@@ -39,6 +48,7 @@ public class TrainRoute
 		}
 
 	}
+	
 	/**
 	 * Determines which direction the Passenger should travel 
 	 * @param Passenger
@@ -50,6 +60,8 @@ public class TrainRoute
 		int arrStationLocation = -1;
 		for(Station s:stations)
 		{
+			//find the location of the passenger's destination station 
+			//
 			if(s.getStationID() == pass.getDestinationID())
 			{
 				destStationLocation = s.getLocation();
@@ -63,10 +75,25 @@ public class TrainRoute
 		{
 			return Direction.INBOUND;
 		}
-		else return Direction.OUTBOUND;
-
+		else
+		{
+			return Direction.OUTBOUND;
+		}
 	}
-
+	private Train getTrainAt(int location)
+	{
+		/*
+		if (inboundTracks.get(location) == Train.getTrain())
+		{
+			return Train.getTrain();
+		}
+		else 
+		{
+			return null; 
+		}
+		*/
+		return null;
+	}
 	/**
 	 * this method will reverse the direction of 
 	 * any train which has reached the end of the route. 
