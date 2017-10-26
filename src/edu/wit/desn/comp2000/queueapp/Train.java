@@ -24,9 +24,11 @@ public class Train
 	
 	private int maxPassengers;
 	
-	public Train(int ID, int initialLocation, Direction initialDirection, int capacity)
+	private static int nextID = 0;
+	
+	public Train(int initialLocation, Direction initialDirection, int capacity)
 	{
-		trainID = ID;
+		trainID = nextID++;
 		location = initialLocation;
 		direction = initialDirection;
 		maxPassengers = capacity;

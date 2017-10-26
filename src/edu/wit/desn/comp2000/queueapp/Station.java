@@ -11,6 +11,8 @@ public class Station
 	
 	private int stationID; 
 	private int location; 
+	private TrainRoute trainRoute;
+	private static int nextID = 0;
 	
 	private ArrayQueue<Passenger> inboundPlatform;
 	private ArrayQueue<Passenger> outboundPlatform;
@@ -20,10 +22,11 @@ public class Station
 	 * @param ID
 	 * @param location1
 	 */
-	public Station(int ID, int location)
+	public Station(int location, TrainRoute route)
 	{
-		stationID = ID;
+		stationID = nextID++;
 		this.location = location;
+		trainRoute = route;
 		inboundPlatform = new ArrayQueue<Passenger>(50);
 		outboundPlatform = new ArrayQueue<Passenger>(50);
 	}
@@ -36,7 +39,7 @@ public class Station
 	public void addToPlatform(Passenger pass)
 	{
 		//which platform to add it to (inbound or outbound)
-		Direction platformNeeded = TrainRoute.whichDirection(pass.getDestinationID(), pass.getArrivalID());
+		Direction platformNeeded = trainRoute.whichDirection(pass.getDestinationID(), pass.getArrivalID());
 		if(platformNeeded == Direction.INBOUND)
 		{
 			inboundPlatform.enqueue(pass);
