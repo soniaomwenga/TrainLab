@@ -5,10 +5,11 @@ public class Passenger
 	private int ID;
 	private int destinationID;
 	private int arrivalID;
+	private static int nextID = 0;
 
-	public Passenger(int ID1, int destinationID1, int arrivalID1)
+	public Passenger(int destinationID1, int arrivalID1)
 	{
-		ID = ID1;
+		ID = nextID++;
 		destinationID = destinationID1;
 		arrivalID = arrivalID1;
 
