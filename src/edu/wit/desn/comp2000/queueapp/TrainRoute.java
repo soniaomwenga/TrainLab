@@ -11,7 +11,7 @@ public class TrainRoute
 {
 	private ArrayList<Train> trainTracks = new ArrayList<Train>(20);
 
-	private static ArrayList<Station> stations;
+	private  ArrayList<Station> stations;
 
 	/*
 	 * private int locationInbound; private int locationOutbound; private int
@@ -24,15 +24,16 @@ public class TrainRoute
 			Configuration config = new Configuration();
 			// getting location of each station from config file
 			int[] stationLocations = config.getStations();
+			
 			for (int i = 0; i < stationLocations.length; i++)
 			{
-				stations.add(new Station(i, stationLocations[i]));
+				stations.add(new Station(stationLocations[i], this));
 			}
 			// Configuration config1 = new Configuration();
 			TrainSpec[] trainSpecs = config.getTrains();
 			for (int i = 0; i < trainTracks.size(); i++)
 			{
-				trainTracks.add(new Train(i, trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
+				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
 			}
 		}
 		catch (FileNotFoundException e)
@@ -47,7 +48,7 @@ public class TrainRoute
 	 * @param Passenger
 	 * @return either INBOUND or OUTBOUND
 	 */
-	public static Direction whichDirection(int destStationID, int arrStationID)
+	public Direction whichDirection(int destStationID, int arrStationID)
 	{
 		int destStationLocation = -1;
 		 int arrStationLocation = -1;
@@ -91,7 +92,22 @@ public class TrainRoute
 		}
 		return null;
 	}
-
+	/*
+	 * 
+	 */
+	private boolean ifAtStation(Train train) throws FileNotFoundException
+	{
+		Configuration config = new Configuration();
+		int[] stationLocations = config.getStations();
+		for(int i = 0; i < stations.size(); i++)
+		{
+			if(train.getLocation() == stationLocations[i])
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * this method will reverse the direction of 
 	 * any train which has reached the end of the route. 
