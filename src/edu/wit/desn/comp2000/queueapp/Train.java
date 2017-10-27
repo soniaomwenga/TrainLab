@@ -48,14 +48,20 @@ public class Train
 	 * Passenger gets on the train
 	 * @param pass
 	 */
-	public void board(Passenger pass)
+	public boolean board(Passenger pass)
 	{
 		if(train.size() < maxPassengers)
 		{
 			train.add(pass);
 			Logger.write(pass + " has boarded "+this);
+			return true;
 		}
-		else Logger.write(this + "is now full");
+		else 
+		{
+			Logger.write(this + "is now full");
+			return false;
+		}
+	
 		
 	}
 	
@@ -104,6 +110,15 @@ public class Train
 	 */
 	public Direction getDirection() {
 		return direction;
+	}
+	
+	public boolean isFull()
+	{
+		if(train.size() < maxPassengers)
+		{
+			return false;
+		}
+		else return true;
 	}
 	
 //just to test
