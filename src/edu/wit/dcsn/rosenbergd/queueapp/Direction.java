@@ -5,7 +5,7 @@
  * Queue application/Train Simulation solution.  You must retain all authorship comments.  If you
  * modify this, add your authorship to mine.
  */
-package edu.wit.desn.comp2000.queueapp;
+package edu.wit.dcsn.rosenbergd.queueapp;
 
 /**
  * @author David M Rosenberg

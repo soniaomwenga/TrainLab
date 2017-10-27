@@ -1,4 +1,5 @@
 package edu.wit.desn.comp2000.queueapp;
+import  edu.wit.dcsn.rosenbergd.queueapp.*;
 
 /**
  * @author Sonia Omwenga
@@ -12,11 +13,20 @@ public class Passenger
 	private static int nextID = 0;
 	private int arrivalTime;
 
+	/**
+	 * constructor which takes in the arrival and destination
+	 *  stations for each passenger and instantiates their 
+	 *  arrivalID, destiationID, and ID. 
+	 * 
+	 * @param destinationID1
+	 * @param arrivalID1
+	 */
 	public Passenger(int destinationID1, int arrivalID1)
 	{
 		ID = nextID++;
 		destinationID = destinationID1;
 		arrivalID = arrivalID1;
+		
 
 	}
 
@@ -80,9 +90,16 @@ public class Passenger
 	 * 		outlined in the config file 
 	 * @return
 	 */
-	public boolean testGetID()
+	public void testGetID()
 	{
-		return true;
+		if(getID() > -1)
+		{
+			System.out.println("Test for getID() passes.");
+		}
+		else 
+		{
+			System.err.println("Test for getID() fails");
+		}
 	}
 
 	/**
@@ -90,9 +107,21 @@ public class Passenger
 	 * 	- an index of the ArrayList which has a station there  
 	 * @return
 	 */
-	public boolean testGetDestinationID()
+	public void testGetDestinationID()
 	{
-		return true;
+		
+		for(int i = 0; i < stations.size; i++)
+		{
+			if (getDestinationID() == stations.get(i))
+			{
+				System.out.println("Test for get Destination ID does pass.");
+			}
+			else 
+			{
+				System.err.println("Test for get Destination ID does not pass.");
+			}
+		}
+		
 	}
 	/**
 	 * Test to make sure ArrivalID is 
@@ -101,7 +130,6 @@ public class Passenger
 	 */
 	public boolean testGetArrivalID()
 	{
-		
 		return true;
 	}
 	public String toString ()

@@ -1,5 +1,6 @@
 package edu.wit.desn.comp2000.queueapp;
 
+import  edu.wit.dcsn.rosenbergd.queueapp.*;
 /**
  * @author Sonia Omwenga
  * @version	1.0.0	first pass
@@ -165,13 +166,7 @@ public class TrainRoute
 	 * @param location
 	 * @return
 	 **/
-	/*
-	 * public void reverseDirection(int location) { //inboundTrain Tracks begin
-	 * at index 0 and move to index 29 then reverses if (locationInbound ==
-	 * (inboundTracks.size()-1)) { for (int i = locationInbound; i > 0; i--) { }
-	 * } //Outbound train track if (locationOutbound ==
-	 * (outboundTracks.size()-(outboundTracks.size()-1))) { } }
-	 */
+	
 	////////////// Test methods Below/////////////
 	/**
 	 * test location of the train to make sure it is actually on the 
@@ -181,12 +176,17 @@ public class TrainRoute
 	 * @param location
 	 * @return
 	 */
-	public boolean testLocation(int locationInbound)
+	public void testIfAtStation(int location)
 	{
-		if (locationInbound >= 0 && locationInbound < 30)
-			return true;
-		else
-			return false;
+		for(int i = 0; i < stations.size(); i++)
+		{
+			if (location == stations.get(i).getLocation())
+			{
+				System.out.println("Test for ifAtStation does pass.");
+				break;
+			}
+			break;
+		}
 	}
 
 	/**
@@ -203,9 +203,4 @@ public class TrainRoute
 			return "theres an insufficient number of stations.";
 	}
 
-	//////////// main method to use test methods //////
-	public static void main(String[] args)
-	{
-
-	}
 }
