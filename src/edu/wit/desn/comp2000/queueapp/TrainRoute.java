@@ -127,6 +127,7 @@ public class TrainRoute
 	{
 		for(Train train:trainTracks)
 		{
+			train.move();
 			if(ifAtStation(train))
 			{
 				Station stationArrivedAt = getStationAt(train.getLocation());
@@ -145,8 +146,6 @@ public class TrainRoute
 					while(train.board(stationArrivedAt.depart(train.getDirection())));
 				}
 			}
-			else 
-				train.move();
 		}
 	}
 	private Station getStationAt (int location)
