@@ -81,11 +81,11 @@ public class TrainRoute
 		 		}
 		if (destStationLocation < arrStationLocation)
 		{
-			return Direction.INBOUND;
+			return Direction.OUTBOUND;
 		}
 		else
 		{
-			return Direction.OUTBOUND;
+			return Direction.INBOUND;
 		}
 	}
 
@@ -244,7 +244,9 @@ public class TrainRoute
 		{
 			System.out.println("Test for moveTrains has passed.");
 		}
+	}
+	private void testWhichDirection()
+	{
 		
 	}
-	
 }
