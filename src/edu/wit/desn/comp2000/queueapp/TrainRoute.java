@@ -167,7 +167,7 @@ public class TrainRoute
 		return null;
 	}
 	
-	public ArrayList getStations()
+	public ArrayList<Station> getStations()
 	{
 		return stations;
 	}
@@ -199,12 +199,12 @@ public class TrainRoute
 	 * @param stations
 	 * @return
 	 */
-	public String testTrainRoute(ArrayList<Object> stations)
+	private void testTrainRoute(ArrayList<Object> stations)
 	{
 		if (stations.size() > 1)
-			return "theres are enough stations present to begin the simulation";
+			System.out.println("theres are enough stations present to begin the simulation");
 		else
-			return "theres an insufficient number of stations.";
+			System.err.println("theres an insufficient number of stations.");
 	}
 	
 	
