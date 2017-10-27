@@ -6,6 +6,7 @@ public class Passenger
 	private int destinationID;
 	private int arrivalID;
 	private static int nextID = 0;
+	private int arrivalTime;
 
 	public Passenger(int destinationID1, int arrivalID1)
 	{

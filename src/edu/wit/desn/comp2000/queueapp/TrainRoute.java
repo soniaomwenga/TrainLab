@@ -29,7 +29,7 @@ public class TrainRoute
 			{
 				stations.add(new Station(stationLocations[i], this));
 			}
-			// Configuration config1 = new Configuration();
+			
 			TrainSpec[] trainSpecs = config.getTrains();
 			for (int i = 0; i < trainTracks.size(); i++)
 			{
@@ -97,16 +97,21 @@ public class TrainRoute
 	 */
 	private boolean ifAtStation(Train train) throws FileNotFoundException
 	{
-		Configuration config = new Configuration();
-		int[] stationLocations = config.getStations();
 		for(int i = 0; i < stations.size(); i++)
 		{
-			if(train.getLocation() == stationLocations[i])
+			if(train.getLocation() == stations.get(i).getLocation())
 			{
 				return true;
 			}
 		}
 		return false;
+	}
+	public void moveTrains()
+	{
+		for(int i = 0; i < trainTracks.size(); i++)
+		{
+			trainTracks.get(i).
+		}
 	}
 	/**
 	 * this method will reverse the direction of 
