@@ -60,6 +60,10 @@ public class Passenger
 	{
 		return arrivalID;
 	}
+	/**
+	 * method to document the arrival time of each passenger 
+	 * @return
+	 */
 	public int getArrivalTime()
 	{
 		return arrivalTime;
@@ -110,7 +114,7 @@ public class Passenger
 	public void testGetDestinationID()
 	{
 		
-		for(int i = 0; i < stations.size; i++)
+		for(int i = 0; i < stations.size(); i++)
 		{
 			if (getDestinationID() == stations.get(i))
 			{
@@ -128,17 +132,47 @@ public class Passenger
 	 * 	- an index of the ArrayList which has a station there  
 	 * @return
 	 */
-	public boolean testGetArrivalID()
+	public void testGetArrivalID()
 	{
-		return true;
+		for(int i = 0; i < stations.size(); i++)
+		{
+			if (getArrivalID() == stations.get(i))
+			{
+				System.out.println("Test for get Arrival ID does pass.");
+			}
+			else 
+			{
+				System.err.println("Test for get Arrival ID does not pass.");
+			}
+		}
 	}
+	/**
+	 * tester method to make sure  that each passengers 
+	 * arrival time is being documented correctly. 
+	 * arrival time should always be greater than or equal to the ticker value 
+	 * because it is documenting the time at which the passenger enters their arrival 
+	 * station from home. 
+	 * @param arrivalTime
+	 * @param tickerValue
+	 */
+	public void testGetArrivalTime (int arrivalTime, int tickerValue)
+	{
+		if(arrivalTime > 0 && arrivalTime <= tickerValue)
+		{
+			System.out.println("Test for getArrivalTime does pass.");
+		}
+		else 
+		{
+			System.err.println("Test for getArrivalTime does not pass.");
+		}
+	}
+	/**
+	 * basic toString method to print out the passenger's 
+	 * credentials. 
+	 */
 	public String toString ()
 	{
 		return "PassengerID: " + ID;
 	}
-	///////// main method to test use all the test methods////////////
-	public static void main (String [] args)
-	{
-		
-	}
+	
 }

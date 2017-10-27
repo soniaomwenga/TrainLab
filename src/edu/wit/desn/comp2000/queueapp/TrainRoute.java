@@ -149,6 +149,12 @@ public class TrainRoute
 			}
 		}
 	}
+	/**
+	 * check if the current location is also 
+	 * the location of a station along the route 
+	 * @param location
+	 * @return
+	 */
 	private Station getStationAt (int location)
 	{
 		for (int i = 0; i < stations.size(); i++)
@@ -160,13 +166,11 @@ public class TrainRoute
 		}
 		return null;
 	}
-	/**
-	 * this method will reverse the direction of 
-	 * any train which has reached the end of the route. 
-	 * @param location
-	 * @return
-	 **/
 	
+	public ArrayList getStations()
+	{
+		return stations;
+	}
 	////////////// Test methods Below/////////////
 	/**
 	 * test location of the train to make sure it is actually on the 
@@ -176,9 +180,9 @@ public class TrainRoute
 	 * @param location
 	 * @return
 	 */
-	public void testIfAtStation(int location)
+	private void testIfAtStation(int location)
 	{
-		for(int i = 0; i < stations.size(); i++)
+		for(int i = 0; i < stations.size();i++)
 		{
 			if (location == stations.get(i).getLocation())
 			{
@@ -202,5 +206,7 @@ public class TrainRoute
 		else
 			return "theres an insufficient number of stations.";
 	}
+	
+	
 
 }
