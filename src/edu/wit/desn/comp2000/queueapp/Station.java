@@ -57,7 +57,7 @@ public class Station
 	 */
 	public void enter(Passenger pass)
 	{
-		//Logger.write(pass + " has entered " + station);
+		Logger.write(pass + " has entered " + this);
 		addToPlatform(pass);
 	}
 	
@@ -68,7 +68,7 @@ public class Station
 	 */
 	public void exit(Passenger pass)
 	{
-		//Logger.write(pass + " has left "+station+" and gone outside");
+		Logger.write(pass + " has left "+this+" and gone outside");
 	}
 	
 	//When a Train arrives at a Station, two sets of interactions occur: 
@@ -82,12 +82,13 @@ public class Station
 	{
 		if(pass.getDestinationID() == stationID)
 		{
-			//Logger.write(pass + " has arrived at his/her destination, "+ station);
+			int travelTime = TrainSimulation.tick - pass.getArrivalTime();
+			Logger.write(pass + " has arrived at his/her destination, "+ this + " after "+travelTime+" ticks.");
 			exit(pass);
 		}
 		else
 		{
-			//Logger.write(pass + " has arrived at " + station + ", but this is not the desired destination!");
+			Logger.write(pass + " has arrived at " + this + ", but this is not the desired destination!");
 			addToPlatform(pass);
 		}
 		 

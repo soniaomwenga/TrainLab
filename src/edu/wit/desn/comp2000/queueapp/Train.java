@@ -42,9 +42,11 @@ public class Train
 	public void board(Passenger pass)
 	{
 		if(train.size() < maxPassengers)
+		{
 			train.add(pass);
-			//Logger.write(pass + " has boarded "+train
-		//else Logger.write(train + "is now full");
+			Logger.write(pass + " has boarded "+this);
+		}
+		else Logger.write(this + "is now full");
 		
 	}
 	
