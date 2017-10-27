@@ -1,6 +1,7 @@
 package edu.wit.desn.comp2000.queueapp;
 //Wes
 import java.util.ArrayList;
+import  edu.wit.dcsn.rosenbergd.queueapp.*;
 
 /**
  * @author Wes Brimeyer
