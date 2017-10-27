@@ -14,7 +14,7 @@ import edu.wit.dcsn.rosenbergd.queueapp.Configuration.TrainSpec;
 
 public class TrainRoute
 {
-	private ArrayList<Train> trainTracks = new ArrayList<Train>(20);
+	private ArrayList<Train> trainTracks;
 
 	private  ArrayList<Station> stations;
 	
@@ -31,13 +31,14 @@ public class TrainRoute
 			Configuration config = new Configuration();
 			// getting location of each station from config file
 			int[] stationLocations = config.getStations();
-			
+			stations = new ArrayList <Station> (stationLocations.length);
 			for (int i = 0; i < stationLocations.length; i++)
 			{
 				stations.add(new Station(stationLocations[i], this));
 			}
 			
 			TrainSpec[] trainSpecs = config.getTrains();
+			trainTracks =  new ArrayList <Train>(trainSpecs.length);
 			for (int i = 0; i < trainTracks.size(); i++)
 			{
 				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
@@ -199,14 +200,51 @@ public class TrainRoute
 	 * @param stations
 	 * @return
 	 */
-	private void testTrainRoute(ArrayList<Object> stations)
+	private void testTrainRoute(ArrayList<Station> stations)
 	{
 		if (stations.size() > 1)
 			System.out.println("theres are enough stations present to begin the simulation");
 		else
-			System.err.println("theres an insufficient number of stations.");
+			System.err.println("there's an insufficient number of stations.");
+	}
+	/**
+	 * testing if getTrainAt works by passing in a train and 
+	 * and searchig for it along the entire tracks.
+	 * @param train
+	 * @param location
+	 */
+	private void testGetTrainAt (Train train, int location)
+	{
+		for (int i = 0; i < trainTracks.size(); i ++)
+		{
+			if(train.getLocation() == i)
+			{
+				System.out.println("Test for getTrainAt has pased");
+			}
+			else
+			{
+				System.err.println("Test for getTrainAt has not passed");
+			}
+		}
+	}
+	/**
+	 * testing the moveTrains method by testing if the 
+	 * location after one move is not equal to the location after another. 
+	 * 
+	 */
+	private void testMoveTrains(Train train)
+	{
+		int firstLoc = train.getLocation();
+		moveTrains();
+		if(firstLoc == train.getLocation())
+		{
+			System.err.println("Test for moveTrains has not passed");
+		}
+		else
+		{
+			System.out.println("Test for moveTrains has passed.");
+		}
+		
 	}
 	
-	
-
 }

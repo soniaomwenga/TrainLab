@@ -111,10 +111,10 @@ public class Passenger
 	 * 	- an index of the ArrayList which has a station there  
 	 * @return
 	 */
-	public void testGetDestinationID()
+	private void testGetDestinationID()
 	{
 		
-		for(int i = 0; i < stations.size(); i++)
+		for(int i = 0; i < getStations(); i++)
 		{
 			if (getDestinationID() == stations.get(i))
 			{
@@ -132,7 +132,7 @@ public class Passenger
 	 * 	- an index of the ArrayList which has a station there  
 	 * @return
 	 */
-	public void testGetArrivalID()
+	private void testGetArrivalID()
 	{
 		for(int i = 0; i < stations.size(); i++)
 		{
@@ -155,7 +155,7 @@ public class Passenger
 	 * @param arrivalTime
 	 * @param tickerValue
 	 */
-	public void testGetArrivalTime (int arrivalTime, int tickerValue)
+	private void testGetArrivalTime (int arrivalTime, int tickerValue)
 	{
 		if(arrivalTime > 0 && arrivalTime <= tickerValue)
 		{
