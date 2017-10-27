@@ -46,7 +46,10 @@ public class Passenger
 	{
 		return arrivalID;
 	}
-
+	public int getArrivalTime()
+	{
+		return arrivalTime;
+	}
 	/**
 	 * boolean method to make sure the random passenger generator 
 	 * does not accidentally set the passengers arrival station equal 
