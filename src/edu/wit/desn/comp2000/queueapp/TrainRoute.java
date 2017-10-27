@@ -1,5 +1,9 @@
 package edu.wit.desn.comp2000.queueapp;
 
+/**
+ * @author Sonia Omwenga
+ * @version	1.0.0	first pass
+ */
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -12,6 +16,8 @@ public class TrainRoute
 	private ArrayList<Train> trainTracks = new ArrayList<Train>(20);
 
 	private  ArrayList<Station> stations;
+	
+	private int trackLength;
 
 	/*
 	 * private int locationInbound; private int locationOutbound; private int
@@ -35,6 +41,9 @@ public class TrainRoute
 			{
 				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
 			}
+			
+			trackLength  = config.getRoute().length;
+			
 		}
 		catch (FileNotFoundException e)
 		{
@@ -42,7 +51,10 @@ public class TrainRoute
 			e.printStackTrace();
 		}
 	}
-
+	public int getTrackLength()
+	{
+		return trackLength;
+	}
 	/**
 	 * Determines which direction the Passenger should travel 
 	 * @param Passenger
@@ -93,9 +105,11 @@ public class TrainRoute
 		return null;
 	}
 	/*
+	 * checks if the current train is at a station 
+	 * based on it's location and the known locations of the stations 
 	 * 
 	 */
-	private boolean ifAtStation(Train train) throws FileNotFoundException
+	private boolean ifAtStation(Train train)
 	{
 		for(int i = 0; i < stations.size(); i++)
 		{
@@ -106,12 +120,45 @@ public class TrainRoute
 		}
 		return false;
 	}
+	/*
+	 * passes to Train.java 
+	 */
 	public void moveTrains()
 	{
-		for(int i = 0; i < trainTracks.size(); i++)
+		for(Train train:trainTracks)
 		{
-			trainTracks.get(i).
+			if(ifAtStation(train))
+			{
+				Station stationArrivedAt = getStationAt(train.getLocation());
+				for(Passenger p:train.getTrain())
+				{
+					if(p.getDestinationID() == stationArrivedAt.getStationID())
+					{
+						train.disembark(p);
+						stationArrivedAt.arrive(p);
+					}
+				}
+				
+				//while there are passengers on the platform waiting to get on the train
+				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty()) 
+				{
+					while(train.board(stationArrivedAt.depart(train.getDirection())));
+				}
+			}
+			else 
+				train.move();
 		}
+	}
+	private Station getStationAt (int location)
+	{
+		for (int i = 0; i < stations.size(); i++)
+		{
+			if (stations.get(i).getLocation() == location)
+			{
+				return stations.get(i);
+			}
+		}
+		return null;
 	}
 	/**
 	 * this method will reverse the direction of 

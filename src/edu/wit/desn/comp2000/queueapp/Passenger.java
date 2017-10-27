@@ -1,5 +1,9 @@
 package edu.wit.desn.comp2000.queueapp;
 
+/**
+ * @author Sonia Omwenga
+ * @version	1.0.0	first pass
+ */
 public class Passenger
 {
 	private int ID;
