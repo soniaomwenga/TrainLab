@@ -101,15 +101,15 @@ public class Station
 	 * removes passenger from the platform queue
 	 * @param a Passenger, the Direction of the platform 
 	 */
-	public void depart(Passenger pass, Direction platformDeparted)
+	public Passenger depart(Passenger pass, Direction platformDeparted)
 	{
 		if(platformDeparted == Direction.INBOUND)
 		{
-			inboundPlatform.dequeue();
+			return inboundPlatform.dequeue();
 		}
 		else
 		{
-			outboundPlatform.enqueue(pass);
+			return outboundPlatform.dequeue();
 		}
 		
 	}

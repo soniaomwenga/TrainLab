@@ -35,6 +35,15 @@ public class Train
 		train = new ArrayList<Passenger> (capacity);
 	}
 	
+	public void move()
+	{
+		if(direction == Direction.INBOUND)
+		{
+			location++;
+		}
+		else location--;
+	}
+	
 	/**
 	 * Passenger gets on the train
 	 * @param pass
