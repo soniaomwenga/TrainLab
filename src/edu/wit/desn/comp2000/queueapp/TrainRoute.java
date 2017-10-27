@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import com.pearson.carrano.ArrayQueue;
 
-import edu.wit.desn.comp2000.queueapp.Configuration.TrainSpec;
+import edu.wit.dcsn.rosenbergd.queueapp.Configuration.TrainSpec;
 
 public class TrainRoute
 {
