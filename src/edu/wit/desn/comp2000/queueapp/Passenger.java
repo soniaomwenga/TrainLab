@@ -10,7 +10,7 @@ public class Passenger
 	private int ID;
 	private int destinationID;
 	private int arrivalID;
-	private static int nextID = 0;
+	private static int nextID = 1;
 	private int arrivalTime;
 
 	/**
@@ -109,14 +109,13 @@ public class Passenger
 	/**
 	 * Test to make sure DestinationID is 
 	 * 	- an index of the ArrayList which has a station there  
-	 * @return
+	 * 
 	 */
-	private void testGetDestinationID()
+	private void testGetDestinationID(TrainRoute s)
 	{
-		
-		for(int i = 0; i < getStations(); i++)
+		for(int i = 0; i < s.getStations().size(); i++)
 		{
-			if (getDestinationID() == stations.get(i))
+			if (getDestinationID() == s.getStations().get(i))
 			{
 				System.out.println("Test for get Destination ID does pass.");
 			}
@@ -134,7 +133,7 @@ public class Passenger
 	 */
 	private void testGetArrivalID()
 	{
-		for(int i = 0; i < stations.size(); i++)
+		for(int i = 0; i < TrainRoute.stations.size(); i++)
 		{
 			if (getArrivalID() == stations.get(i))
 			{

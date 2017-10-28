@@ -209,7 +209,7 @@ public class TrainRoute
 	}
 	/**
 	 * testing if getTrainAt works by passing in a train and 
-	 * and searchig for it along the entire tracks.
+	 * and searching for it along the entire tracks.
 	 * @param train
 	 * @param location
 	 */
@@ -245,8 +245,15 @@ public class TrainRoute
 			System.out.println("Test for moveTrains has passed.");
 		}
 	}
+	/**
+	 * tester method for whichDirection that tests by 
+	 * 
+	 * 
+	 */
 	private void testWhichDirection()
 	{
 		
+		
 	}
+	
 }
