@@ -25,7 +25,7 @@ public class Train
 	
 	private int maxPassengers;
 	
-	private static int nextID = 0;
+	private static int nextID = 1;
 	
 	public Train(int initialLocation, Direction initialDirection, int capacity)
 	{
@@ -38,6 +38,7 @@ public class Train
 	
 	public void move()
 	{
+		System.out.println("Moving "+this);
 		if(direction == Direction.INBOUND)
 		{
 			location++;

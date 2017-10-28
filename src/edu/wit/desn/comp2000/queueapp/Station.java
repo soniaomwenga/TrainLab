@@ -13,7 +13,7 @@ public class Station
 	private int stationID; 
 	private int location; 
 	private TrainRoute trainRoute;
-	private static int nextID = 0;
+	private static int nextID = 1;
 	
 	private ArrayQueue<Passenger> inboundPlatform;
 	private ArrayQueue<Passenger> outboundPlatform;
@@ -37,7 +37,7 @@ public class Station
 	 * add passenger to the correct platform. 
 	 * @param a Passenger
 	 */
-	public void addToPlatform(Passenger pass)
+	private void addToPlatform(Passenger pass)
 	{
 		//which platform to add it to (inbound or outbound)
 		Direction platformNeeded = trainRoute.whichDirection(pass.getDestinationID(), pass.getArrivalID());
@@ -104,13 +104,18 @@ public class Station
 	 */
 	public Passenger depart(Direction platformDeparted)
 	{
+		Passenger pass;
 		if(platformDeparted == Direction.INBOUND)
 		{
-			return inboundPlatform.dequeue();
+			pass = inboundPlatform.dequeue();
+			Logger.write(pass+" has departed "+this+" from the inbound platform.");
+			return pass;
 		}
 		else
 		{
-			return outboundPlatform.dequeue();
+			pass = outboundPlatform.dequeue();
+			Logger.write(pass+" has departed "+this+" from the outbound platform.");
+			return pass;
 		}
 		
 	}
