@@ -54,6 +54,11 @@ public class Train
 		}
 		Logger.write("Moving "+this+" New location: "+location);
 	}
+	
+	public void reverseDirection()
+	{
+		direction = direction.reverse();
+	}
 
 	/**
 	 * Passenger gets on the train
