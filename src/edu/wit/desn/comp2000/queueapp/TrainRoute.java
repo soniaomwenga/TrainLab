@@ -142,7 +142,6 @@ public class TrainRoute
 				//while there are passengers on the platform waiting to get on the train
 				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty() && 
 					  (train.board(stationArrivedAt.depart(train.getDirection()))));
-				
 			}
 		}
 	}
