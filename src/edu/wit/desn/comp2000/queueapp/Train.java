@@ -38,18 +38,23 @@ public class Train
 		if(direction == Direction.INBOUND)
 		{
 			location++;
-			if(location == )
+//			if(location == trainRoute.getTrackLength())
+//			{
+//				direction = direction.reverse();
+//			}
 		}
-		else location--;
+		else 
+		{
+			location--;
+//			if(location == 1)
+//			{
+//				direction = direction.reverse();
+//			}
+//				
+		}
 		Logger.write("Moving "+this+" New location: "+location);
 	}
-	
-	public void reverse()
-	{
-		if(direction == )
-	}
-	
-	
+
 	/**
 	 * Passenger gets on the train
 	 * @param pass
@@ -141,7 +146,7 @@ public class Train
 //below are private tester methods
 	private static void testConstructorAndGetters()
 	{
-		Train test = new Train(5, Direction.INBOUND, 30 );
+		Train test = new Train(5, Direction.INBOUND, 30, new TrainRoute() );
 		
 		if(test.getDirection() == Direction.INBOUND && test.getLocation() == 5
 				&& test.getTrain().size() == 0 && test.getTrainID() == 1)
@@ -153,7 +158,7 @@ public class Train
 	private static void testMove()
 	{
 		System.out.println("Testing move()...");
-		Train test = new Train(5, Direction.INBOUND, 20);
+		Train test = new Train(5, Direction.INBOUND, 20, new TrainRoute());
 		
 		System.out.println("Expected: (Tick, Location)...(1,6)(2,7)(3,8)...(15,20)(16,19)(17,18)(18,17)(19,16)(20,15)");
 		System.out.print("Actual: ");
@@ -170,7 +175,7 @@ public class Train
 		System.out.println("\n\nTesting Board AND Disembark...\n");
 		
 		Passenger bob = new Passenger(3,1);
-		Train test = new Train(7, Direction.OUTBOUND, 20);
+		Train test = new Train(7, Direction.OUTBOUND, 20, new TrainRoute());
 		boolean didItWork = true;
 		
 		test.board(bob);

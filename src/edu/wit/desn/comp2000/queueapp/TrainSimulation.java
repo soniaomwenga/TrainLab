@@ -7,7 +7,7 @@ import java.util.Random;
 
 /**
  * @author Wes Brimeyer
- *
+ * 
  */
 public class TrainSimulation
 {
