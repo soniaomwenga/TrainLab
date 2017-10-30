@@ -144,10 +144,7 @@ public class TrainRoute
 				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty() && 
 					  (train.board(stationArrivedAt.depart(train.getDirection()))));
 			}
-			if(train.getLocation() == 1 || train.getLocation() == trackLength)
-			{
-				train.reverseDirection();
-			}
+			
 		}
 	}
 	
