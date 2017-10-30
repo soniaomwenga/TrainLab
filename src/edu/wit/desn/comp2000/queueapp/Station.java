@@ -107,12 +107,23 @@ public class Station
 		Passenger pass;
 		if(platformDeparted == Direction.INBOUND)
 		{
+			if(inboundPlatform.isEmpty())
+			{
+				System.out.println("Attempted to dequeue an empty platform");
+				return null;
+			}
+				
 			pass = inboundPlatform.dequeue();
 			Logger.write(pass+" has departed "+this+" from the inbound platform.");
 			return pass;
 		}
 		else
 		{
+			if(outboundPlatform.isEmpty())
+			{
+				System.out.println("Attempted to dequeue an empty platform");
+				return null;
+			}
 			pass = outboundPlatform.dequeue();
 			Logger.write(pass+" has departed "+this+" from the outbound platform.");
 			return pass;

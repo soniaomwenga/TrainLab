@@ -125,13 +125,11 @@ public class TrainRoute
 	 */
 	public void moveTrains()
 	{
-		System.out.println("Tried to move Trains----------xxxx-----");
 		for(Train train:trainTracks)
-		{System.out.println("Tried to move Trains0000000000000000000");
+		{
 			train.move();
 			if(ifAtStation(train))
 			{
-				System.out.println("Tried to move Trains----------xxxx-----");
 				Station stationArrivedAt = getStationAt(train.getLocation());
 				for(Passenger p:train.getTrain())
 				{
@@ -142,10 +140,9 @@ public class TrainRoute
 					}
 				}
 				//while there are passengers on the platform waiting to get on the train
-				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty()) 
-				{
-					while(train.board(stationArrivedAt.depart(train.getDirection())));
-				}
+				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty() && 
+					  (train.board(stationArrivedAt.depart(train.getDirection()))));
+				
 			}
 		}
 	}
@@ -166,6 +163,10 @@ public class TrainRoute
 		}
 		return null;
 	}
+	/**
+	 * passes the arraylist of stations
+	 * @return
+	 */
 	
 	public ArrayList<Station> getStations()
 	{
