@@ -106,16 +106,14 @@ public class Passenger
 
 	/**
 	 * Test to make sure DestinationID is 
-	 * 	- an index of the ArrayList which has a station there  
+	 * 	an actual station
 	 * 
 	 */
-	private void testGetDestinationID(TrainRoute s)
+	private void testGetDestinationID(Passenger pass)
 	{
-		int x = getDestinationID(); 
+		int x = pass.getDestinationID();
 		
-		for(int i = 0; i < s.getStations().size(); i++)
-		{
-			if (x == s.getStations().get(i))
+			if (x == Station.getStationID())
 			{
 				System.out.println("Test for get Destination ID does pass.");
 			}
@@ -123,19 +121,17 @@ public class Passenger
 			{
 				System.err.println("Test for get Destination ID does not pass.");
 			}
-		}
-		
 	}
 	/**
 	 * Test to make sure ArrivalID is 
 	 * 	- an index of the ArrayList which has a station there  
 	 * @return
 	 */
-	private void testGetArrivalID()
+	private void testGetArrivalID(Passenger pass)
 	{
-		for(int i = 0; i < TrainRoute.stations.size(); i++)
-		{
-			if (getArrivalID() == stations.get(i))
+		int x = pass.getArrivalID();
+		
+			if (x == Station.getStationID())
 			{
 				System.out.println("Test for get Arrival ID does pass.");
 			}
@@ -143,7 +139,6 @@ public class Passenger
 			{
 				System.err.println("Test for get Arrival ID does not pass.");
 			}
-		}
 	}
 	/**
 	 * tester method to make sure  that each passengers 

@@ -41,7 +41,7 @@ public class TrainRoute
 			trainTracks =  new ArrayList <Train>(trainSpecs.length);
 			for (int i = 0; i < trainSpecs.length; i++)
 			{
-				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
+				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity, this));
 			}
 			trackLength  = config.getRoute().length;
 		}
