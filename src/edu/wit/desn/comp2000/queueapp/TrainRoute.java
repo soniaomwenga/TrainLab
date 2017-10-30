@@ -128,10 +128,7 @@ public class TrainRoute
 		for(Train train:trainTracks)
 		{
 			train.move();
-			if(train.getLocation() == 1 || train.getLocation() == trackLength)
-			{
-				train.reverseDirection();
-			}
+
 			if(ifAtStation(train))
 			{
 				Station stationArrivedAt = getStationAt(train.getLocation());
@@ -147,7 +144,10 @@ public class TrainRoute
 				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty() && 
 					  (train.board(stationArrivedAt.depart(train.getDirection()))));
 			}
-			
+			if(train.getLocation() == 1 || train.getLocation() == trackLength)
+			{
+				train.reverseDirection();
+			}
 		}
 	}
 	
