@@ -16,16 +16,11 @@ public class Train
  */
 	
 	private ArrayList<Passenger> train;
-	
 	private int trainID; 
-	
-	private int location; 
-	
-	private Direction direction; 
-	
-	private int maxPassengers;
-	
-	private static int nextID = 0;
+	private int location; 	
+	private Direction direction; 	
+	private int maxPassengers;	
+	private static int nextID = 1;
 	
 	public Train(int initialLocation, Direction initialDirection, int capacity)
 	{
@@ -38,6 +33,7 @@ public class Train
 	
 	public void move()
 	{
+		Logger.write("Moving "+this);
 		if(direction == Direction.INBOUND)
 		{
 			location++;
@@ -125,10 +121,65 @@ public class Train
 //just to test
 	public static void main(String[] args)
 	{
-		//Train test = new Train(1,10, Direction.INBOUND);
-		//System.out.println(test.getTrainID());
-		//System.out.println(test.getLocation());
-		//System.out.println(test.getDirection());
+		Logger.Create();
+		System.out.println("---------------\nTests (Very basic and rough)...\n");
 		
+		testConstructorAndGetters();
+		testMove();
+		testBoardDisembark();
 	}
+//below are private tester methods
+	private static void testConstructorAndGetters()
+	{
+		Train test = new Train(5, Direction.INBOUND, 30 );
+		
+		if(test.getDirection() == Direction.INBOUND && test.getLocation() == 5
+				&& test.getTrain().size() == 0 && test.getTrainID() == 1)
+		{
+			System.out.println("Constructors and Getters test Succeeded\n");					
+		}
+		else System.out.println("Constructors and Getters test Failed\n");		
+	}
+	private static void testMove()
+	{
+		System.out.println("Testing move()...");
+		Train test = new Train(5, Direction.INBOUND, 20);
+		
+		System.out.println("Expected: (Tick, Location)...(1,6)(2,7)(3,8)...(15,20)(16,19)(17,18)(18,17)(19,16)(20,15)");
+		System.out.print("Actual: ");
+		for(int i = 1; i <= 20 ; i++) //tests move for 20 ticks
+		{
+			test.move();
+			System.out.print("("+i+","+test.location+")");
+		}
+			
+	
+	}
+	private static void testBoardDisembark()
+	{
+		System.out.println("\n\nTesting Board AND Disembark...\n");
+		
+		Passenger bob = new Passenger(3,1);
+		Train test = new Train(7, Direction.OUTBOUND, 20);
+		boolean didItWork = true;
+		
+		test.board(bob);
+		if(test.getTrain().size() != 1 || test.getTrain().get(0) == bob)
+			didItWork = false;
+		
+		test.disembark(new Passenger(1,2)); //this Passenger shouldn't be on the train
+		if(test.getTrain().size() != 1 || test.getTrain().get(0) == bob)
+			didItWork = false;
+		
+		test.disembark(bob);
+		if(test.getTrain().size() != 0)
+			didItWork = false;
+		
+		if(didItWork)
+		{
+			System.out.println("Test for board() and disembark() SUCCEEDED\n");
+		}
+		else System.out.println("Test for board() and disembark() SUCCEEDED\n");
+	}
+
 }
