@@ -132,8 +132,9 @@ public class TrainRoute
 			if(ifAtStation(train))
 			{
 				Station stationArrivedAt = getStationAt(train.getLocation());
-				for(Passenger p:train.getTrain())
+				for(int i = 0; i < train.getTrain().size(); i++)
 				{
+					Passenger p = train.getTrain().get(i);
 					if(p.getDestinationID() == stationArrivedAt.getStationID())
 					{
 						train.disembark(p);

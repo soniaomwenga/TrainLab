@@ -87,13 +87,13 @@ public class TrainSimulation
 				//constructs a new passenger with a random arrival and destination station
 				Station[] randomStations = get2RandomStations(trainRoute);
 				Passenger temp = new Passenger(randomStations[0].getStationID(),randomStations[1].getStationID());
-				randomStations[0].enter(temp);	
+				randomStations[1].enter(temp);	
 			}
 			//System.out.println("moving trains... along track of length"+trainRoute.getTrackLength());
 			trainRoute.moveTrains();
 			
 		}
-		
+
 		Logger.close();
 	}
 	

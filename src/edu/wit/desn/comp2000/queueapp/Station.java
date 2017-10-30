@@ -114,7 +114,7 @@ public class Station
 			}
 				
 			pass = inboundPlatform.dequeue();
-			Logger.write(pass+" has departed "+this+" from the inbound platform.");
+			Logger.write(pass+" has departed "+this+" from the inbound platform. Destination: Station #"+pass.getDestinationID());
 			return pass;
 		}
 		else
@@ -125,7 +125,7 @@ public class Station
 				return null;
 			}
 			pass = outboundPlatform.dequeue();
-			Logger.write(pass+" has departed "+this+" from the outbound platform.");
+			Logger.write(pass+" has departed "+this+" from the outbound platform. Destination: Station #"+pass.getDestinationID());
 			return pass;
 		}
 		

@@ -38,28 +38,23 @@ public class Train
 		if(direction == Direction.INBOUND)
 		{
 			location++;
-//			if(location == trainRoute.getTrackLength())
-//			{
-//				direction = direction.reverse();
-//			}
+			if(location == trainRoute.getTrackLength())
+			{
+				direction = direction.reverse();
+			}
 		}
 		else 
 		{
 			location--;
-//			if(location == 1)
-//			{
-//				direction = direction.reverse();
-//			}
-//				
+			if(location == 1)
+			{
+				direction = direction.reverse();
+			}
+				
 		}
 		Logger.write("Moving "+this+" New location: "+location);
 	}
 	
-	public void reverseDirection()
-	{
-		direction = direction.reverse();
-	}
-
 	/**
 	 * Passenger gets on the train
 	 * @param pass
