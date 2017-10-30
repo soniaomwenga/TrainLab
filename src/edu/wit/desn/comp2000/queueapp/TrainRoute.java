@@ -140,10 +140,9 @@ public class TrainRoute
 					}
 				}
 				//while there are passengers on the platform waiting to get on the train
-				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty()) 
-				{
-					while(train.board(stationArrivedAt.depart(train.getDirection())));
-				}
+				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty() && 
+					  (train.board(stationArrivedAt.depart(train.getDirection()))));
+				
 			}
 		}
 	}
@@ -164,6 +163,10 @@ public class TrainRoute
 		}
 		return null;
 	}
+	/**
+	 * passes the arraylist of stations
+	 * @return
+	 */
 	
 	public ArrayList<Station> getStations()
 	{

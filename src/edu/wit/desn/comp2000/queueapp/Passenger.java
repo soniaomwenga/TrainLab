@@ -111,9 +111,11 @@ public class Passenger
 	 */
 	private void testGetDestinationID(TrainRoute s)
 	{
+		int x = getDestinationID(); 
+		
 		for(int i = 0; i < s.getStations().size(); i++)
 		{
-			if (getDestinationID() == s.getStations().get(i))
+			if (x == s.getStations().get(i))
 			{
 				System.out.println("Test for get Destination ID does pass.");
 			}
