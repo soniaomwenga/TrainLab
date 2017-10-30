@@ -109,11 +109,11 @@ public class Passenger
 	 * 	an actual station
 	 * 
 	 */
-	private void testGetDestinationID(Passenger pass)
+	private static void testGetDestinationID(Passenger pass)
 	{
 		int x = pass.getDestinationID();
 		
-			if (x == Station.getStationID())
+			if (x >= 0 && x<= 4 )
 			{
 				System.out.println("Test for get Destination ID does pass.");
 			}
@@ -127,11 +127,11 @@ public class Passenger
 	 * 	- an index of the ArrayList which has a station there  
 	 * @return
 	 */
-	private void testGetArrivalID(Passenger pass)
+	private static void testGetArrivalID(Passenger pass)
 	{
 		int x = pass.getArrivalID();
 		
-			if (x == Station.getStationID())
+			if (x >= 0 && x <= 4 )
 			{
 				System.out.println("Test for get Arrival ID does pass.");
 			}
@@ -149,7 +149,7 @@ public class Passenger
 	 * @param arrivalTime
 	 * @param tickerValue
 	 */
-	private void testGetArrivalTime (int arrivalTime, int tickerValue)
+	private static void testGetArrivalTime (int arrivalTime, int tickerValue)
 	{
 		if(arrivalTime > 0 && arrivalTime <= tickerValue)
 		{
@@ -159,6 +159,13 @@ public class Passenger
 		{
 			System.err.println("Test for getArrivalTime does not pass.");
 		}
+	}
+	public void main (String [] args)
+	{
+		Passenger p = new Passenger (5,3);
+		testGetID();
+		testGetDestinationID(p);
+		testGetArrivalID(p);
 	}
 	/**
 	 * basic toString method to print out the passenger's 
