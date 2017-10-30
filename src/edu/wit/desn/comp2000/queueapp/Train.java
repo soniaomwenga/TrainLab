@@ -21,25 +21,34 @@ public class Train
 	private Direction direction; 	
 	private int maxPassengers;	
 	private static int nextID = 1;
+	private TrainRoute trainRoute;
 	
-	public Train(int initialLocation, Direction initialDirection, int capacity)
+	public Train(int initialLocation, Direction initialDirection, int capacity, TrainRoute route)
 	{
 		trainID = nextID++;
 		location = initialLocation;
 		direction = initialDirection;
 		maxPassengers = capacity;
 		train = new ArrayList<Passenger> (capacity);
+		trainRoute = route;
 	}
 	
 	public void move()
 	{
-		Logger.write("Moving "+this);
 		if(direction == Direction.INBOUND)
 		{
 			location++;
+			if(location == )
 		}
 		else location--;
+		Logger.write("Moving "+this+" New location: "+location);
 	}
+	
+	public void reverse()
+	{
+		if(direction == )
+	}
+	
 	
 	/**
 	 * Passenger gets on the train
@@ -69,6 +78,7 @@ public class Train
 	public void disembark(Passenger pass)
 	{
 		train.remove(pass);
+		Logger.write(pass +" has gotten off "+this);
 	}
 	
 	@Override
