@@ -39,11 +39,10 @@ public class TrainRoute
 			
 			TrainSpec[] trainSpecs = config.getTrains();
 			trainTracks =  new ArrayList <Train>(trainSpecs.length);
-			for (int i = 0; i < trainTracks.size(); i++)
+			for (int i = 0; i < trainSpecs.length; i++)
 			{
 				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
 			}
-			
 			trackLength  = config.getRoute().length;
 			
 		}
@@ -249,13 +248,23 @@ public class TrainRoute
 	}
 	/**
 	 * tester method for whichDirection that tests by 
-	 * 
+	 * passing the ID of two stations into whichDirection 
+	 * and checking if the output is correct.
 	 * 
 	 */
 	private void testWhichDirection()
 	{
+		int arr = 5; 
+		int dest = 3; 
 		
-		
+		if(whichDirection(arr,dest).equals("OUTBOUND"))
+		{
+			System.out.println("Test for whichDirection has passed");
+		}
+		else 
+		{
+			System.err.println("Test for whichDirection has not passed");
+		}
 	}
 	
 }

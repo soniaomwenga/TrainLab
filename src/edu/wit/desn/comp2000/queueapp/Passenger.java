@@ -26,8 +26,6 @@ public class Passenger
 		ID = nextID++;
 		destinationID = destinationID1;
 		arrivalID = arrivalID1;
-		
-
 	}
 
 	/**
