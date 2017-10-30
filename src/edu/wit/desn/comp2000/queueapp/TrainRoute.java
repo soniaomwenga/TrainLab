@@ -127,11 +127,13 @@ public class TrainRoute
 	 */
 	public void moveTrains()
 	{
+		System.out.println("Tried to move Trains----------xxxx-----");
 		for(Train train:trainTracks)
-		{
+		{System.out.println("Tried to move Trains0000000000000000000");
 			train.move();
 			if(ifAtStation(train))
 			{
+				System.out.println("Tried to move Trains----------xxxx-----");
 				Station stationArrivedAt = getStationAt(train.getLocation());
 				for(Passenger p:train.getTrain())
 				{
