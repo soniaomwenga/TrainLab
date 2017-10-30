@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @author Wes Brimeyer
+ *
+ */
 public class TrainSimulation
 {
 	public static int tick;

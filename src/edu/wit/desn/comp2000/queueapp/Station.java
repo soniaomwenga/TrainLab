@@ -158,5 +158,29 @@ public class Station
 		}
 	}
 
-
+	//Below are private tester methods
+	private static void testConstructor()
+	{
+		
+		
+	}
+	private static void testAddToPlatform()
+	{
+		
+		
+	}
+	
+	private static void testEnterExitArrive()
+	{
+		
+	}
+	private static void testDepart()
+	{
+		
+	}
+	private static void testGetters()
+	{
+		
+	}
 }
+
