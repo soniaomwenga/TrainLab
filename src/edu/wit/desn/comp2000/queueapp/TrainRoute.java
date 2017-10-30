@@ -43,7 +43,6 @@ public class TrainRoute
 			{
 				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity));
 			}
-			
 			trackLength  = config.getRoute().length;
 			
 		}
