@@ -30,7 +30,7 @@ public class Train
 		direction = initialDirection;
 		maxPassengers = capacity;
 		train = new ArrayList<Passenger> (capacity);
-		trainRoute = route;
+		trainRoute = route;//callback
 	}
 	
 	public void move()
