@@ -173,7 +173,7 @@ public class Passenger
 	 */
 	public String toString ()
 	{
-		return "PassengerID: " + ID;
+		return "Passenger #" + ID;
 	}
 	
 }
