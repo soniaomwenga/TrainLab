@@ -135,7 +135,8 @@ public class Passenger
 	 */
 	private static void testGetArrivalTime (int arrivalTime, int tickerValue)
 	{
-		if(arrivalTime > 0 && arrivalTime <= tickerValue)
+		
+		if(arrivalTime <= tickerValue)
 		{
 			System.out.println("Test for getArrivalTime does pass.");
 		}
@@ -151,7 +152,7 @@ public class Passenger
 		testGetID(p);
 		testGetDestinationID(p);
 		testGetArrivalID(p);
-		testGetArrivalTime(x,1);
+		testGetArrivalTime(x,TrainSimulation.tick);
 	}
 	/**
 	 * basic toString method to print out the passenger's 

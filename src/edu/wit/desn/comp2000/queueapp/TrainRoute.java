@@ -174,6 +174,11 @@ public class TrainRoute
 	{
 		return stations;
 	}
+	
+	public ArrayList<Train> getTrains()
+	{
+		return trainTracks;
+	}
 	////////////// Test methods Below/////////////
 	/**
 	 * test location of the train to make sure it is actually on the 
@@ -183,11 +188,12 @@ public class TrainRoute
 	 * @param location
 	 * @return
 	 */
-	private void testIfAtStation(int location)
+	private static void testIfAtStation(int location)
 	{
-		for(int i = 0; i < stations.size();i++)
+		TrainRoute tr = new TrainRoute();
+		for(int i = 0; i < tr.stations.size();i++)
 		{
-			if (location == stations.get(i).getLocation())
+			if (location == tr.stations.get(i).getLocation())
 			{
 				System.out.println("Test for ifAtStation does pass.");
 				break;
@@ -202,12 +208,12 @@ public class TrainRoute
 	 * @param stations
 	 * @return
 	 */
-	private void testTrainRoute(ArrayList<Station> stations)
+	private static void testTrainRoute(ArrayList<Station> stations)
 	{
 		if (stations.size() > 1)
-			System.out.println("theres are enough stations present to begin the simulation");
+			System.out.println("There are enough stations present to begin the simulation");
 		else
-			System.err.println("there's an insufficient number of stations.");
+			System.err.println("There's an insufficient number of stations.");
 	}
 	/**
 	 * testing if getTrainAt works by passing in a train and 
@@ -215,17 +221,15 @@ public class TrainRoute
 	 * @param train
 	 * @param location
 	 */
-	private void testGetTrainAt (Train train, int location)
+	private static void testGetTrainAt (Train train)
 	{
-		for (int i = 0; i < trainTracks.size(); i ++)
+		TrainRoute tr = new TrainRoute();
+		for (int i = 0; i < tr.trainTracks.size(); i ++)
 		{
 			if(train.getLocation() == i)
 			{
-				System.out.println("Test for getTrainAt has pased");
-			}
-			else
-			{
-				System.err.println("Test for getTrainAt has not passed");
+				System.out.println("Test for getTrainAt has passed");
+				break;
 			}
 		}
 	}
@@ -234,11 +238,13 @@ public class TrainRoute
 	 * location after one move is not equal to the location after another. 
 	 * 
 	 */
-	private void testMoveTrains(Train train)
+	private static void testMoveTrains(Train train)
 	{
+		Logger.Create();
+		TrainRoute tr = new TrainRoute();
 		int firstLoc = train.getLocation();
-		moveTrains();
-		if(firstLoc == train.getLocation())
+		tr.moveTrains();
+		if(firstLoc == train.getLocation() && !tr.ifAtStation(train))
 		{
 			System.err.println("Test for moveTrains has not passed");
 		}
@@ -253,12 +259,12 @@ public class TrainRoute
 	 * and checking if the output is correct.
 	 * 
 	 */
-	private void testWhichDirection()
+	private static void testWhichDirection()
 	{
-		int arr = 5; 
+		int arr = 4; 
 		int dest = 3; 
-		
-		if(whichDirection(arr,dest).equals("OUTBOUND"))
+		TrainRoute train = new TrainRoute();
+		if(train.whichDirection(dest,arr).equals(Direction.OUTBOUND))
 		{
 			System.out.println("Test for whichDirection has passed");
 		}
@@ -270,6 +276,13 @@ public class TrainRoute
 	public static void main(String [] args)
 	{
 		
+		testWhichDirection();
+		TrainRoute tr = new TrainRoute();
+		Train train = new Train(1, Direction.INBOUND, 20, tr);
+		testIfAtStation(1);
+		testMoveTrains(train);
+		testGetTrainAt(train);
+		testTrainRoute(tr.stations);
 	}
 	
 }
