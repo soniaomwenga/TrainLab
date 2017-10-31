@@ -1,5 +1,5 @@
 package edu.wit.desn.comp2000.queueapp;
-//Wes
+
 import com.pearson.carrano.ArrayQueue;
 import  edu.wit.dcsn.rosenbergd.queueapp.*;
 
@@ -19,7 +19,8 @@ public class Station
 	private ArrayQueue<Passenger> outboundPlatform;
 	
 	/**
-	 * initialize platforms to capacity of 50. 
+	 * Sets instance variables
+	 * initialize platforms to inital capacity of 50. 
 	 * @param ID
 	 * @param location1
 	 */
@@ -34,7 +35,7 @@ public class Station
 	
 	
 	/**
-	 * add passenger to the correct platform. 
+	 * add passenger to the correct platform. (a queue) 
 	 * @param a Passenger
 	 */
 	private void addToPlatform(Passenger pass)
@@ -73,7 +74,7 @@ public class Station
 	}
 	
 	//When a Train arrives at a Station, two sets of interactions occur: 
-	//(1) Passengers disembark() the Train and simultaneously/immediately arrive() at the Station 
+	//Passengers disembark() the Train and simultaneously/immediately arrive() at the Station 
 	/**
 	 * Passenger arrives at station after getting off a train
 	 * 
@@ -95,7 +96,7 @@ public class Station
 		 
 	}
 	
-	//(2), while there are Passengers waiting on the platform 
+	//while there are Passengers waiting on the platform 
 	//and the Train has room for more Passengers, a Passenger leave()s the Station (platform) and board()s the Train
 	/**
 	 * Passenger departs the station and enters a train,
@@ -168,30 +169,82 @@ public class Station
 			return outboundPlatform;
 		}
 	}
+	
+	
+	//main method for testing purposes only
+	public static void main(String[] args)
+	{
+		testConstructorAndGetters();
+		testAddToPlatform();
+		testEnterExitArrive();
+		testDepart();
+	}
+	
 
 	//Below are private tester methods
-	private static void testConstructor()
+	private static void testConstructorAndGetters()
 	{
-		
+		TrainRoute t = new TrainRoute();
+		Station test = new Station(3,t);
+		if(test.getLocation() == 3 && test.trainRoute == t
+				&& test.getPlatform(Direction.INBOUND).isEmpty() && test.getStationID() == 6)//after stations already in TrainRoute	
+		{
+			System.out.println("Constructors and Getters test SUCCEEDED\n");					
+		}
+		else System.out.println("Constructors and Getters test FAILED\n");		
 		
 	}
 	private static void testAddToPlatform()
 	{
+		TrainRoute t = new TrainRoute();
+		Station test = new Station(3,t);
+		
+		test.addToPlatform(new Passenger(4,3));//from location 4 to location 15 should be INBOUND
+		System.out.print("Testing addToPlatform()... Test ");
+		if(!test.getPlatform(Direction.INBOUND).isEmpty())
+				System.out.println("SUCCEEDED");
+		else System.out.println("FAILED");
 		
 		
 	}
 	
 	private static void testEnterExitArrive()
 	{
+		Logger.Create();
+		System.out.println("\nTesting enter(), exit(), & arrived()...\n");
+		TrainRoute t = new TrainRoute();
+		Station test = new Station(3,t);
+		
+		test.enter(new Passenger(1,6));
+		System.out.print("Test for enter() ");
+		if(test.getPlatform(Direction.OUTBOUND).isEmpty() && test.getPlatform(Direction.INBOUND).isEmpty())
+			System.out.println("FAILED");
+		else System.out.println("SUCCEEDED");
+		
+		test.exit(new Passenger(1,5));//should print something in .log
+		System.out.println("Check log to make sure exit() worked");
+		
+		test.arrive(new Passenger(test.stationID,2));
+		test.arrive(new Passenger(2,4));
+		System.out.println("Check log to make sure arrive() worked. Passenger #4 should arrive successfully, but not 5");
+		Logger.close();
+		
 		
 	}
 	private static void testDepart()
 	{
+		Passenger bob = new Passenger(1,2);
+		TrainRoute t = new TrainRoute();
+		Station test = new Station(6,t);
+		
+		test.addToPlatform(bob);
+		if(bob == test.depart(Direction.INBOUND))
+		{
+			System.out.println("\nTesting depart()... SUCCEEDED");
+		}
+		else System.out.println("\nTesting depart()... FAILED");
 		
 	}
-	private static void testGetters()
-	{
-		
-	}
+
 }
 

@@ -1,5 +1,5 @@
 package edu.wit.desn.comp2000.queueapp;
-//Wes
+
 import java.util.ArrayList;
 import  edu.wit.dcsn.rosenbergd.queueapp.*;
 
@@ -9,12 +9,6 @@ import  edu.wit.dcsn.rosenbergd.queueapp.*;
  */
 public class Train
 {
-/*Inbound & outbound tracks. 
- * Use ArrayList for the two moving trains per route 
- *  This 
- * 
- */
-	
 	private ArrayList<Passenger> train;
 	private int trainID; 
 	private int location; 	
@@ -33,6 +27,10 @@ public class Train
 		trainRoute = route;//callback
 	}
 	
+	/**
+	 * Moves the train's location +- 1, depending on
+	 * if it is inbound or outbound
+	 */
 	public void move()
 	{
 		if(direction == Direction.INBOUND)
@@ -58,6 +56,7 @@ public class Train
 	/**
 	 * Passenger gets on the train
 	 * @param pass
+	 * @return true if it succeeded, false if train is already full
 	 */
 	public boolean board(Passenger pass)
 	{
@@ -149,7 +148,7 @@ public class Train
 		Train test = new Train(5, Direction.INBOUND, 30, new TrainRoute() );
 		
 		if(test.getDirection() == Direction.INBOUND && test.getLocation() == 5
-				&& test.getTrain().size() == 0 && test.getTrainID() == 1)
+				&& test.getTrain().size() == 0 && test.getTrainID() == 7)//after 6 trains from TrainRoute made in .config
 		{
 			System.out.println("Constructors and Getters test Succeeded\n");					
 		}
