@@ -18,8 +18,8 @@ public class Passenger
 	 *  stations for each passenger and instantiates their 
 	 *  arrivalID, destiationID, and ID. 
 	 * 
-	 * @param destinationID1
-	 * @param arrivalID1
+	 * @param destinationID1 is the ID of their destination station
+	 * @param arrivalID1 is the ID of the arrival station
 	 */
 	public Passenger(int destinationID1, int arrivalID1)
 	{
@@ -29,9 +29,9 @@ public class Passenger
 	}
 
 	/**
-	 * this method will get the ID passengers ID to use it in other classes 
+	 * this method will give the passenger's ID to use it in other classes 
 	 * such as station 
-	 * @return
+	 * @return the passenger's ID
 	 */
 	public int getID()
 	{
@@ -41,7 +41,7 @@ public class Passenger
 	/**
 	 * This method is to get the destination station number so that 
 	 * the station class will know where to let passengers off 
-	 * @return
+	 * @return the passenger's destination station ID
 	 */
 	public int getDestinationID()
 	{
@@ -52,7 +52,7 @@ public class Passenger
 	 *  This method is to get the arrival station number so that 
 	 * the station class will know how to plan the route of the passenger
 	 * and which platform (queue) to add them to. 
-	 * @return
+	 * @return the passenger's arrival station ID
 	 */
 	public int getArrivalID()
 	{
@@ -60,29 +60,12 @@ public class Passenger
 	}
 	/**
 	 * method to document the arrival time of each passenger 
-	 * @return
+	 * @return the ticker value when they enter their arrival station
 	 */
 	public int getArrivalTime()
 	{
 		return arrivalTime;
 	}
-	/**
-	 * boolean method to make sure the random passenger generator 
-	 * does not accidentally set the passengers arrival station equal 
-	 * to their destination on but checking this before inserting the 
-	 * passenger into the simulation. 
-	 * @param destination
-	 * @param arrival
-	 * @return
-	 */
-	public boolean check(int destination, int arrival)
-	{
-		if (destination != arrival)
-			return false;
-		else
-			return true;
-	}
-
 	////////////////////// TESTER METHODS BELOW//////////////////////////////
 	/**
 	 * Test that the ID assigned to a passenger has not 
@@ -90,11 +73,12 @@ public class Passenger
 	 * 	- is not less than 1 
 	 * 	- is not greater than the maximum number of passengers 
 	 * 		outlined in the config file 
-	 * @return
+	 * 
 	 */
-	public void testGetID()
+	private static void testGetID(Passenger p)
 	{
-		if(getID() > -1)
+		
+		if(p.getID() > -1)
 		{
 			System.out.println("Test for getID() passes.");
 		}
@@ -113,7 +97,7 @@ public class Passenger
 	{
 		int x = pass.getDestinationID();
 		
-			if (x >= 0 && x<= 4 )
+			if (x >= 0 && x<= 5 )
 			{
 				System.out.println("Test for get Destination ID does pass.");
 			}
@@ -131,7 +115,7 @@ public class Passenger
 	{
 		int x = pass.getArrivalID();
 		
-			if (x >= 0 && x <= 4 )
+			if (x >= 0 && x <= 5 )
 			{
 				System.out.println("Test for get Arrival ID does pass.");
 			}
@@ -160,12 +144,14 @@ public class Passenger
 			System.err.println("Test for getArrivalTime does not pass.");
 		}
 	}
-	public void main (String [] args)
+	public static void main (String [] args)
 	{
 		Passenger p = new Passenger (5,3);
-		testGetID();
+		int x = p.getArrivalTime();
+		testGetID(p);
 		testGetDestinationID(p);
 		testGetArrivalID(p);
+		testGetArrivalTime(x,1);
 	}
 	/**
 	 * basic toString method to print out the passenger's 

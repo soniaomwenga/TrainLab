@@ -19,11 +19,10 @@ public class TrainRoute
 	private  ArrayList<Station> stations;
 	
 	private int trackLength;
-
-	/*
-	 * private int locationInbound; private int locationOutbound; private int
-	 * destinationID; private int arrivalID;
-	 */
+	/**
+	 * constructor that set the values of trainTracks, stations, 
+	 * and trackLength based on the configuration file. 
+	*/
 	public TrainRoute()
 	{
 		try
@@ -37,27 +36,35 @@ public class TrainRoute
 				stations.add(new Station(stationLocations[i], this));
 			}
 			
+			//getting the location, direction, and capacity of each train from the configuration file.
 			TrainSpec[] trainSpecs = config.getTrains();
 			trainTracks =  new ArrayList <Train>(trainSpecs.length);
 			for (int i = 0; i < trainSpecs.length; i++)
 			{
 				trainTracks.add(new Train(trainSpecs[i].location, trainSpecs[i].direction, trainSpecs[i].capacity, this));
 			}
+			
+			//getting the track length from the configuration file
 			trackLength  = config.getRoute().length;
 		}
 		catch (FileNotFoundException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * returns the length of the tracks
+	 * @return the length of the route as specified in the configuration file.
+	 */
 	public int getTrackLength()
 	{
 		return trackLength;
 	}
 	/**
 	 * Determines which direction the Passenger should travel 
-	 * @param Passenger
+	 * based on their arrival station and destination station
+	 * @param destStationID  is the destination station
+	 * @param arrStationID is the arrival station
 	 * @return either INBOUND or OUTBOUND
 	 */
 	public Direction whichDirection(int destStationID, int arrStationID)
@@ -77,6 +84,7 @@ public class TrainRoute
 		 				arrStationLocation = s.getLocation();
 		 			}
 		 		}
+		 	// if the location of the destination station is lower than 
 		if (destStationLocation < arrStationLocation)
 		{
 			return Direction.OUTBOUND;
@@ -86,28 +94,12 @@ public class TrainRoute
 			return Direction.INBOUND;
 		}
 	}
-
+	
 	/**
-	 * checking if there is a train at the given location. if there is, 
-	 * return the train and all its contents. 
-	 * @param location
-	 * @return
-	 */
-	private Train getTrainAt(int location)
-	{
-		for (int i = 0; i < trainTracks.size(); i++)
-		{
-			if (trainTracks.get(i).getLocation() == location)
-			{
-				return trainTracks.get(i);
-			}
-		}
-		return null;
-	}
-	/*
 	 * checks if the current train is at a station 
 	 * based on it's location and the known locations of the stations 
-	 * 
+	 * @param train
+	 * @return whether or not the current location is a station
 	 */
 	private boolean ifAtStation(Train train)
 	{
@@ -120,15 +112,18 @@ public class TrainRoute
 		}
 		return false;
 	}
-	/*
-	 * passes to Train.java 
+	/**
+	 * checks if each train on the tracks is at a station. 
+	 * if it is at a station, it will decide whether to board/ disembark passengers based on their route
+	 * if it is not at a station, it will move the train again. 
 	 */
 	public void moveTrains()
 	{
+		// for each train within trainTracks
 		for(Train train:trainTracks)
 		{
 			train.move();
-			
+			//if this respective train when passed to ifAtStation returns true
 			if(ifAtStation(train))
 			{
 				Station stationArrivedAt = getStationAt(train.getLocation());
@@ -141,7 +136,11 @@ public class TrainRoute
 						stationArrivedAt.arrive(p);
 					}
 				}
-				//while there are passengers on the platform waiting to get on the train
+				/*	
+				 * while there are passengers on the platform waiting to get on the train
+				 * & the train present is going the direction the passenger needs from their 
+				 * arrival station
+				*/
 				while (!stationArrivedAt.getPlatform(train.getDirection()).isEmpty() && 
 					  (train.board(stationArrivedAt.depart(train.getDirection()))));
 			}
@@ -153,7 +152,7 @@ public class TrainRoute
 	 * check if the current location is also 
 	 * the location of a station along the route 
 	 * @param location
-	 * @return
+	 * @return the location if there is a station there. if not it returns null
 	 */
 	private Station getStationAt (int location)
 	{
@@ -168,7 +167,7 @@ public class TrainRoute
 	}
 	/**
 	 * passes the arraylist of stations
-	 * @return
+	 * @return the entire array list of stations 
 	 */
 	
 	public ArrayList<Station> getStations()
@@ -267,6 +266,10 @@ public class TrainRoute
 		{
 			System.err.println("Test for whichDirection has not passed");
 		}
+	}
+	public static void main(String [] args)
+	{
+		
 	}
 	
 }
