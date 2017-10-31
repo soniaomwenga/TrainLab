@@ -144,6 +144,7 @@ public class Passenger
 		{
 			System.err.println("Test for getArrivalTime does not pass.");
 		}
+
 	}
 	public static void main (String [] args)
 	{
