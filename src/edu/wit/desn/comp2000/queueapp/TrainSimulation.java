@@ -94,7 +94,8 @@ public class TrainSimulation
 		for(tick = 1; tick <= sim.maxTicks; tick++)//simulate for the designated number of ticks
 		{
 			//generate a random number of passengers into the simulation
-			for(int i = 0; i < getRandom(sim.minRateOfPassengers,sim.maxRateOfPassengers); i++)
+			int rateForThisTick = getRandom(sim.minRateOfPassengers,sim.maxRateOfPassengers);
+			for(int i = 0; i < rateForThisTick; i++)
 			{
 				//constructs a new passenger with a random arrival and destination station
 				Station[] randomStations = get2RandomStations(trainRoute);
