@@ -78,7 +78,14 @@ public class TrainSimulation
 		
 		TrainRoute trainRoute = new TrainRoute();
 		System.out.println(sim.maxTicks);
-		for(tick = 0; tick < sim.maxTicks; tick++)//simulate for the designated number of ticks
+		for(int i = 0; i < sim.initialPassengers; i++)
+		{
+			//constructs a new passenger with a random arrival and destination station
+			Station[] randomStations = get2RandomStations(trainRoute);
+			Passenger temp = new Passenger(randomStations[0].getStationID(),randomStations[1].getStationID());
+			randomStations[1].enter(temp);	
+		}
+		for(tick = 1; tick <= sim.maxTicks; tick++)//simulate for the designated number of ticks
 		{
 			System.out.println("\nTick: "+tick);
 			//generate a random number of passengers into the simulation

@@ -69,7 +69,7 @@ public class Train
 		}
 		else 
 		{
-			Logger.write(this + "is now full");
+			Logger.write(this + " is now full");
 			return false;
 		}
 	
