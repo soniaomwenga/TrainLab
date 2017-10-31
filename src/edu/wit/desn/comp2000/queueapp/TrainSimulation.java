@@ -7,7 +7,8 @@ import java.util.Random;
 
 /**
  * @author Wes Brimeyer
- * 
+ * @version 1.0.0 first attempt
+ * @version 1.0.1 added summary
  */
 public class TrainSimulation
 {
@@ -38,7 +39,12 @@ public class TrainSimulation
 		}
 	}
 	
-	
+	/**
+	 * Generates a random integer between min and max
+	 * @param min
+	 * @param max
+	 * @return a random integer between min and max
+	 */
 	private static int getRandom(int min, int max)
 	{
 		if(min == max)
@@ -78,7 +84,7 @@ public class TrainSimulation
 		
 		TrainRoute trainRoute = new TrainRoute();
 		System.out.println(sim.maxTicks);
-		for(int i = 0; i < sim.initialPassengers; i++)
+		for(int i = 0; i < sim.initialPassengers; i++)//putting initial passengers into simulation
 		{
 			//constructs a new passenger with a random arrival and destination station
 			Station[] randomStations = get2RandomStations(trainRoute);
@@ -87,7 +93,6 @@ public class TrainSimulation
 		}
 		for(tick = 1; tick <= sim.maxTicks; tick++)//simulate for the designated number of ticks
 		{
-			System.out.println("\nTick: "+tick);
 			//generate a random number of passengers into the simulation
 			for(int i = 0; i < getRandom(sim.minRateOfPassengers,sim.maxRateOfPassengers); i++)
 			{
@@ -96,11 +101,20 @@ public class TrainSimulation
 				Passenger temp = new Passenger(randomStations[0].getStationID(),randomStations[1].getStationID());
 				randomStations[1].enter(temp);	
 			}
-			//System.out.println("moving trains... along track of length"+trainRoute.getTrackLength());
 			trainRoute.moveTrains();
 			
-		}
+		}//end tick loop
 
+		System.out.println("Simulation has ended after "+tick+" ticks.");
+		for(Train t: trainRoute.getTrains())
+		{
+			System.out.println(t + " has "+t.getTrain().size() + " passengers currently on board");
+		}
+		for(Station s: trainRoute.getStations())
+		{
+			System.out.println(s + " has "+s.getPlatform(Direction.INBOUND)+ " waiting on the Inbound Platform");
+			System.out.println(s + " has "+s.getPlatform(Direction.OUTBOUND)+ " waiting on the Outbound Platform");
+		}
 		Logger.close();
 	}
 	
