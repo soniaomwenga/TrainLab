@@ -3,7 +3,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-
+/**
+ * 
+ * @author Jonathan Garciamathurin
+ *
+ */
 
 public class Logger
 {
@@ -13,7 +17,7 @@ public class Logger
 	
 	//a//
 	public static void write(String message){
-		pw.println(message);
+		pw.println("At time "+TrainSimulation.tick+","+message);
 	
 	}
 		
