@@ -105,16 +105,12 @@ public class TrainSimulation
 			
 		}//end tick loop
 
-		System.out.println("Simulation has ended after "+tick+" ticks.");
+		System.out.println("\nSimulation has ended after "+(tick-1)+" ticks.\n");
 		for(Train t: trainRoute.getTrains())
 		{
 			System.out.println(t + " has "+t.getTrain().size() + " passengers currently on board");
 		}
-		for(Station s: trainRoute.getStations())
-		{
-			System.out.println(s + " has "+s.getPlatform(Direction.INBOUND)+ " waiting on the Inbound Platform");
-			System.out.println(s + " has "+s.getPlatform(Direction.OUTBOUND)+ " waiting on the Outbound Platform");
-		}
+
 		Logger.close();
 	}
 	
