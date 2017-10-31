@@ -86,6 +86,10 @@ public class Station
 		{
 			int travelTime = TrainSimulation.tick - pass.getArrivalTime();
 			Logger.write(pass + " has arrived at his/her destination, "+ this + " after "+travelTime+" ticks.");
+			
+			if(travelTime < TrainSimulation.fastestTravelTime) TrainSimulation.fastestTravelTime = travelTime;
+			if(travelTime > TrainSimulation.slowestTravelTime) TrainSimulation.slowestTravelTime = travelTime;
+			
 			exit(pass);
 		}
 		else

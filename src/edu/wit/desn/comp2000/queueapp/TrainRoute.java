@@ -134,6 +134,7 @@ public class TrainRoute
 					{
 						train.disembark(p);
 						stationArrivedAt.arrive(p);
+						i--;
 					}
 				}
 				/*	

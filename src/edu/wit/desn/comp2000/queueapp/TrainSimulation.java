@@ -18,7 +18,8 @@ public class TrainSimulation
 	private int minRateOfPassengers;
 	private int maxRateOfPassengers;
 	private int initialPassengers;
-	
+	public static int fastestTravelTime = 1000;//summary detail to find the passenger that had the shorted ride
+	public static int slowestTravelTime = -1;//summary detail to find the passenger with the longest ride time
 	
 	public TrainSimulation()
 	{
@@ -111,7 +112,10 @@ public class TrainSimulation
 		{
 			System.out.println(t + " has "+t.getTrain().size() + " passengers currently on board");
 		}
-
+		
+		System.out.println("The fastest a passenger got to his/her destination was " +fastestTravelTime+" ticks");
+		System.out.println("The slowest a passenger got to his/her destination was " +slowestTravelTime+" ticks");
+		
 		Logger.close();
 	}
 	
